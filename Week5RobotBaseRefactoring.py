@@ -42,7 +42,9 @@ class RobotBase:
                 f"Battery depleted: {self._battery.is_depleted()}\n"                
 
                 "\nMotor: \n"
+                f"Speed (0-1): {self._motor._speed!r}\n"
                 f"Is Moving: {self._motor.is_running!r}\n"
+
 
                 "\nSensor: \n"
                 f"Sensor Readings: {Sensor!r}")
@@ -51,9 +53,16 @@ class RobotBase:
 print("Initial Robot Settings:")
 robot = RobotBase("Bob")
 
+# Battery
 robot._battery = Battery(100, 70)
 robot._battery.drain(20)
 
+# Motor
+robot._motor = Motor(1, True)
+robot._motor.forward(20)
+# robot._motor.stop()
+
+# Sensor
 
 print(robot.report_status)
 

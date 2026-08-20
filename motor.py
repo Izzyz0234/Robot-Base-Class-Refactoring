@@ -8,6 +8,15 @@ class Motor():
         """Get moving status."""
         return self._is_running
 
+    @property
+    def speed(self):
+        return self._speed
+
+    @speed.setter
+    def speed(self, value):
+        if value < 0:
+            raise ValueError("Speed cannot be negative")
+
     @is_running.setter
     def is_running(self, value):
         """Set moving status.
@@ -18,30 +27,47 @@ class Motor():
 
         self._is_running = value
 
-    def move_forward(self, speed):
-        """Move the robot forward at a given speed.
+    def forward(self, distance):
+        if self._is_running == True:
+            if distance > 0:
+                self._speed = 1
+                self._is_running = True
+                return (f"Moving Forward: {distance}")
+            if distance == 0:
+                self._speed = 0
+                self._is_running = False
+                return (f"Moving Forward: {distance}")
+            else:
+                raise ValueError("Speed cant be negative")
+        else:
+            self._speed = 0
 
-        Args:
-            speed: Speed at which to move forward (float)
-        Raises:
-            ValueError: If battery is out or speed is negative
-        """
-        if self._battery_level <= 0:
-            raise ValueError("Out of battery")
-        if speed >= 0:
-            self._is_running = True
-        if speed == 0:
-            self._is_running = False
-        if speed < 0:
-            raise ValueError("Speed cannot be negative")
+
+    def backward(self, distance):
+        if self._is_running == True:
+            if distance > 0:
+                self._speed = 1
+                self._is_running = True
+                return (f"Moving Backwards: {distance}")
+            if distance == 0:
+                self._speed = 0
+                self._is_running = False
+                return (f"Moving Backwards: {distance}")
+            else:
+                raise ValueError("Speed cant be negative")
+        else:
+            self._speed = 0
 
         
-
     def stop(self):
         """Stop the robot."""
-        if self._is_running == False or self._battery_level <= 0:
-            self.stop
+        self._is_running = False
+        self._speed = 0
 
+        return ("Robot Stopped")
+
+    def set_speed(self, speed):
+        self._speed = speed
 
 #forward(distance)
 #backward(distance)
