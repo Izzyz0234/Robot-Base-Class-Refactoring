@@ -1,5 +1,12 @@
 import random
+from battery import Battery
 
+class Robot:
+    def __init__(self, name):
+        self.name = name
+        self.battery = Battery()
+
+sam = Robot("Sam")
 
 class RobotBase:
     """A base class for a robot with basic functionalities."""
