@@ -14,8 +14,9 @@ class Motor():
 
     @speed.setter
     def speed(self, value):
-        if value < 0:
-            raise ValueError("Speed cannot be negative")
+        if value < 0 or value > 1:
+            raise ValueError("Speed cannot be negative or above 1")
+        self._speed = value
 
     @is_running.setter
     def is_running(self, value):

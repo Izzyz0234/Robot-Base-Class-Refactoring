@@ -9,7 +9,7 @@ class RobotBase:
     def __init__(self, name):
         self._name = name
         self._battery = Battery(100, 50)
-        self._motor = Motor(5, True)
+        self._motor = Motor(1, True)
         self._sensor = Sensor(1)
 
     @property
@@ -58,8 +58,8 @@ robot._battery = Battery(100, 70)
 robot._battery.drain(20)
 
 # Motor
-robot._motor = Motor(1, True)
-robot._motor.forward(20)
+robot._motor = Motor(5, True)
+# robot._motor.forward(20)
 # robot._motor.stop()
 
 # Sensor
