@@ -35,6 +35,21 @@ class Sensor():
         if value < 0:
             raise ValueError("Sensor reading cannot be negative")
 
+    def get_sensor_reading(self, name):
+        """Get the reading of a specific sensor.
+
+        Args:
+            name: Name of the sensor (str)
+        Raises:
+            ValueError: If battery is out or sensor is negative
+        """
+        if self._battery_level <= 0:
+            raise ValueError("Out of battery")
+        if name in self._sensor_readings:
+            return self._sensor_readings[name]
+        else:
+            raise ValueError("Sensor not found")
+
 #read_data()
 #detect_obstacle()
 #get_reading()

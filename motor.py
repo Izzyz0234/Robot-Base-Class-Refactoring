@@ -42,20 +42,6 @@ class Motor():
         if self._is_running == False or self._battery_level <= 0:
             self.stop
 
-    def get_sensor_reading(self, name):
-        """Get the reading of a specific sensor.
-
-        Args:
-            name: Name of the sensor (str)
-        Raises:
-            ValueError: If battery is out or sensor is negative
-        """
-        if self._battery_level <= 0:
-            raise ValueError("Out of battery")
-        if name in self._sensor_readings:
-            return self._sensor_readings[name]
-        else:
-            raise ValueError("Sensor not found")
 
 #forward(distance)
 #backward(distance)
