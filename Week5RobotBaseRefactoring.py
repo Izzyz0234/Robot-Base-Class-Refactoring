@@ -1,10 +1,20 @@
 import random
 from battery import Battery
+from line import LineSensor
+from motor import Motor
 
 class Robot:
     def __init__(self, name):
         self.name = name
         self.battery = Battery()
+        self.motor = Motor()
+
+class LineFolloweRobot(Robot):
+    def __init__(self, name):
+        super().__init__(name) # links to Robot name
+        self.line_sensor = LineSensor()
+
+line0 = LineFolloweRobot("Line Follower")
 
 sam = Robot("Sam")
 

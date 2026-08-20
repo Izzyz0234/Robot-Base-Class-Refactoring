@@ -1,4 +1,5 @@
 class Battery():
-    def __init__(self, charge):
-        print("Battery: ", charge)
+    def __init__(self):
+        print("Battery")
         pass
+        
