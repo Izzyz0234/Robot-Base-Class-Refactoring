@@ -44,11 +44,10 @@ class RobotBase:
                 f"Speed: {self._motor._speed!r}\n"
                 f"Is Moving: {self._motor.is_running!r}\n"
 
-
                 "\nSensor: \n"
-                f"Sensor Readings: {self._sensor.read_data()!r}"
-                f"Sensor Readings: {self._sensor.detect_obstacle()!r}"
-                f"Sensor Readings: {self._sensor.get_reading()!r}")
+                f"Sensor Read Data: {self._sensor.read_data()!r}\n"
+                f"Sensor Detect Obstacle: {self._sensor.detect_obstacle()!r}\n"
+                f"Sensor Get Reading: {self._sensor.get_reading()!r}\n")
 
 print("Initial Robot Settings:")
 robot = RobotBase("Bob")
