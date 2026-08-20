@@ -1,21 +1,22 @@
 class Motor():
-    def __init__(self, is_moving):
-        self.is_moving = is_moving
+    def __init__(self, speed, is_running):
+        self._speed = speed
+        self._is_running = is_running
 
     @property
-    def is_moving(self):
+    def is_running(self):
         """Get moving status."""
-        return self.is_moving
+        return self._is_running
 
-    @is_moving.setter
-    def is_moving(self, value):
+    @is_running.setter
+    def is_running(self, value):
         """Set moving status.
 
         Args:
             value: New moving status (bool)
         """
 
-        self.is_moving = value
+        self._is_running = value
 
     def move_forward(self, speed):
         """Move the robot forward at a given speed.
@@ -28,9 +29,9 @@ class Motor():
         if self._battery_level <= 0:
             raise ValueError("Out of battery")
         if speed >= 0:
-            self._is_moving = True
+            self._is_running = True
         if speed == 0:
-            self._is_moving = False
+            self._is_running = False
         if speed < 0:
             raise ValueError("Speed cannot be negative")
 
@@ -38,7 +39,7 @@ class Motor():
 
     def stop(self):
         """Stop the robot."""
-        if self._is_moving == False or self._battery_level <= 0:
+        if self._is_running == False or self._battery_level <= 0:
             self.stop
 
     def get_sensor_reading(self, name):
@@ -55,3 +56,8 @@ class Motor():
             return self._sensor_readings[name]
         else:
             raise ValueError("Sensor not found")
+
+#forward(distance)
+#backward(distance)
+#stop()
+#set_speed(speed)

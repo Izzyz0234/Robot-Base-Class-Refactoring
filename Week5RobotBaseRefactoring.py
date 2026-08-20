@@ -7,15 +7,16 @@ class RobotBase:
     """A base class for a robot with basic functionalities."""
 
     def __init__(self, name):
-        self.name = name
-        self.battery = Battery()
-        self.motor = Motor()
-        self.sensor = Sensor()
+        self._name = name
+        self._battery = Battery(100)
+        self._motor = Motor(True)
+        self._sensor = Sensor(5)
 
     @property
     def name(self):
         """Get robot name."""
-        return self.name
+        return self._name
+
 
     def report_status(self):
         """Report the current status of the robot.
@@ -23,17 +24,17 @@ class RobotBase:
         Returns:
             A string containing robot name, battery level, moving status, and sensor readings.
         """
-        return (f"Robot Name: {self.name}\n"
+        return (f"Robot Name: {self._name}\n"
                 f"Battery Level: {Battery}%\n"
                 f"Is Moving: {Motor}\n"
                 f"Sensor Readings: {Sensor}")
 
 
     def __str__(self):
-        return f"RobotBase('{self.name}', {Battery}, {Motor}, {Sensor})"
+        return f"RobotBase('{self._name}', {Battery}, {Motor}, {Sensor})"
 
     def __repr__(self):
-        return (f"Robot Name: {self.name}\n"
+        return (f"Robot Name: {self._name}\n"
                 f"Battery Level: {Battery}%\n"
                 f"Is Moving: {Motor}\n"
                 f"Sensor Readings: {Sensor}")

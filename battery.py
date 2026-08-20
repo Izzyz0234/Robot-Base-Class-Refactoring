@@ -1,14 +1,15 @@
 class Battery():
-    def __init__(self, battery_level):
-        self.battery_level = battery_level
+    def __init__(self, capacity, current_level):
+        self._capacity = capacity
+        self._current_level = current_level
 
     @property
-    def battery_level(self):
+    def current_level(self):
         """Get battery level."""
-        return self.battery_level
+        return self._current_level
 
-    @battery_level.setter
-    def battery_level(self, value):
+    @current_level.setter
+    def current_level(self, value):
         """Set battery level with validation.
 
         Args:
@@ -18,4 +19,9 @@ class Battery():
         """
         if not (0 <= value <= 100):
             raise ValueError("Battery level must be between 0 and 100")
-        self.battery_level = value
+        self._current_level = value
+
+#drain(amount)
+#charge()
+#get_percentage()
+#is_depleted()
