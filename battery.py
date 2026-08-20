@@ -25,6 +25,9 @@ class Battery():
         if self._current_level >= 0:
             self.current_level == self.current_level - amount
 
+    def get_percentage(self):
+        return self._capacity / self.current_level
+        
 #drain(amount)
 #charge()
 #get_percentage()

@@ -25,23 +25,30 @@ class RobotBase:
             A string containing robot name, battery level, moving status, and sensor readings.
         """
         return (f"Robot Name: {self._name!r}\n"
-                f"Battery Level: {Battery}%\n"
+                f"Battery Level: {self._battery.current_level()}\n"
                 f"Is Moving: {Motor!r}\n"
                 f"Sensor Readings: {Sensor!r}")
 
 
     def __str__(self):
-        return f"RobotBase('{self._name!r}', {Battery!r}, {Motor!r}, {Sensor!r})"
+        return f"RobotBase('{self._name!r}', {self._battery.current_level()!r}, {Motor!r}, {Sensor!r})"
 
     def __repr__(self):
         return (f"Robot Name: {self._name!r}\n"
-                f"Battery Level: {Battery!r}%\n"
+                f"Battery Level: {self._battery.current_level}\n"
                 f"Is Moving: {Motor!r}\n"
                 f"Sensor Readings: {Sensor!r}")
 
 
 print("Initial Robot Settings:")
 robot = RobotBase("Bob")
+
+battery = Battery(100, 90)
+battery.drain(20)
+# battery.get_percentage()
+
+
+
 print(robot.report_status)
 
 # print("\nStart Robot:")
