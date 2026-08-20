@@ -9,7 +9,7 @@ class RobotBase:
         self._name = name
         self._battery = Battery(100, 50)
         self._motor = Motor(1, True)
-        self._sensor = Sensor(1)
+        self._sensor = Sensor("object")
 
     @property
     def name(self):
@@ -46,8 +46,9 @@ class RobotBase:
 
 
                 "\nSensor: \n"
-                f"Sensor Readings: {Sensor!r}")
-
+                f"Sensor Readings: {self._sensor.read_data()!r}"
+                f"Sensor Readings: {self._sensor.detect_obstacle()!r}"
+                f"Sensor Readings: {self._sensor.get_reading()!r}")
 
 print("Initial Robot Settings:")
 robot = RobotBase("Bob")
@@ -63,6 +64,7 @@ robot._motor = Motor(5, True)
 robot._motor.set_speed(50)
 
 # Sensor
+robot._sensor = Sensor("object")
 
 print(robot.report_status)
 
