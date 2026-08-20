@@ -22,11 +22,19 @@ class Battery():
         self._current_level = value
 
     def drain(self, amount):
-        if self._current_level >= 0:
-            self.current_level == self.current_level - amount
+        if self._current_level < amount:
+            raise ValueError("Battery drain level must be higher or equal to current level")
+        self.current_level == self.current_level - amount
 
     def get_percentage(self):
-        return self._capacity / self.current_level
+        return (f"{self._capacity / self.current_level}")
+
+    def is_depleted(self):
+        if self._current_level == self._capacity:
+            raise ValueError("Battery level is depleted")
+        else:
+            raise ValueError("Battery level is not depleted")
+        
         
 #drain(amount)
 #charge()

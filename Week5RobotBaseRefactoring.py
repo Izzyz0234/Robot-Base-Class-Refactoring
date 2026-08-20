@@ -8,7 +8,7 @@ class RobotBase:
 
     def __init__(self, name):
         self._name = name
-        self._battery = Battery(100, 90)
+        self._battery = Battery(100, 50)
         self._motor = Motor(5, True)
         self._sensor = Sensor(1)
 
@@ -25,28 +25,28 @@ class RobotBase:
             A string containing robot name, battery level, moving status, and sensor readings.
         """
         return (f"Robot Name: {self._name!r}\n"
-                f"Battery Level: {self._battery.current_level()}\n"
+                f"Battery Level: {Battery}\n"
                 f"Is Moving: {Motor!r}\n"
                 f"Sensor Readings: {Sensor!r}")
 
 
     def __str__(self):
-        return f"RobotBase('{self._name!r}', {self._battery.current_level()!r}, {Motor!r}, {Sensor!r})"
+        return f"RobotBase('{self._name!r}', {self._battery.get_percentage()}, {self._battery.current_level()!r}, {self._motor.is_running!r}, {Sensor!r})"
 
     def __repr__(self):
         return (f"Robot Name: {self._name!r}\n"
+                f"Battery depleted: {self._battery.is_depleted()}\n"                
+                f"Battery Persentage: {self._battery.get_percentage()}\n"
                 f"Battery Level: {self._battery.current_level}\n"
-                f"Is Moving: {Motor!r}\n"
+                f"Is Moving: {self._motor.is_running!r}\n"
                 f"Sensor Readings: {Sensor!r}")
 
 
 print("Initial Robot Settings:")
 robot = RobotBase("Bob")
 
-battery = Battery(100, 90)
-battery.drain(20)
-# battery.get_percentage()
-
+robot._battery = Battery(100, 70)
+robot._battery.drain(60)
 
 
 print(robot.report_status)
