@@ -35,10 +35,16 @@ class RobotBase:
 
     def __repr__(self):
         return (f"Robot Name: {self._name!r}\n"
+                "Battery: \n"
+                f"Battery Level: {self._battery.current_level}\n"                
+                f"Battery Charge: {self._battery.charge()}\n"
+                f"Battery Persentage: {self._battery.get_percentage()}\n"                
                 f"Battery depleted: {self._battery.is_depleted()}\n"                
-                f"Battery Persentage: {self._battery.get_percentage()}\n"
-                f"Battery Level: {self._battery.current_level}\n"
+
+                "\nMotor: \n"
                 f"Is Moving: {self._motor.is_running!r}\n"
+
+                "\nSensor: \n"
                 f"Sensor Readings: {Sensor!r}")
 
 
@@ -46,7 +52,7 @@ print("Initial Robot Settings:")
 robot = RobotBase("Bob")
 
 robot._battery = Battery(100, 70)
-robot._battery.drain(60)
+robot._battery.drain(20)
 
 
 print(robot.report_status)
