@@ -8,16 +8,6 @@ class Motor():
         """Get moving status."""
         return self._is_running
 
-    @property
-    def speed(self):
-        return self._speed
-
-    @speed.setter
-    def speed(self, value):
-        if value < 0 or value > 1:
-            raise ValueError("Speed cannot be negative or above 1")
-        self._speed = value
-
     @is_running.setter
     def is_running(self, value):
         """Set moving status.
@@ -31,11 +21,9 @@ class Motor():
     def forward(self, distance):
         if self._is_running == True:
             if distance > 0:
-                self._speed = 1
                 self._is_running = True
                 return (f"Moving Forward: {distance}")
             if distance == 0:
-                self._speed = 0
                 self._is_running = False
                 return (f"Moving Forward: {distance}")
             else:
@@ -47,11 +35,9 @@ class Motor():
     def backward(self, distance):
         if self._is_running == True:
             if distance > 0:
-                self._speed = 1
                 self._is_running = True
                 return (f"Moving Backwards: {distance}")
             if distance == 0:
-                self._speed = 0
                 self._is_running = False
                 return (f"Moving Backwards: {distance}")
             else:
@@ -68,6 +54,8 @@ class Motor():
         return ("Robot Stopped")
 
     def set_speed(self, speed):
+        if speed < 0:
+            raise ValueError("Speed cannot be negative")
         self._speed = speed
 
 #forward(distance)

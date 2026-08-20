@@ -1,4 +1,3 @@
-import random
 from battery import Battery
 from sensor import Sensor
 from motor import Motor
@@ -42,7 +41,7 @@ class RobotBase:
                 f"Battery depleted: {self._battery.is_depleted()}\n"                
 
                 "\nMotor: \n"
-                f"Speed (0-1): {self._motor._speed!r}\n"
+                f"Speed: {self._motor._speed!r}\n"
                 f"Is Moving: {self._motor.is_running!r}\n"
 
 
@@ -61,6 +60,7 @@ robot._battery.drain(20)
 robot._motor = Motor(5, True)
 # robot._motor.forward(20)
 # robot._motor.stop()
+robot._motor.set_speed(50)
 
 # Sensor
 
