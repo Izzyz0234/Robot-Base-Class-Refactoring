@@ -53,8 +53,8 @@ print("Initial Robot Settings:")
 robot = RobotBase("Bob")
 
 # Battery
-robot._battery = Battery(100, 70)
-robot._battery.drain(20)
+robot._battery = Battery(100, 80)
+robot._battery.drain(50)
 
 # Motor
 robot._motor = Motor(5, True)
