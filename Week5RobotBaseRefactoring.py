@@ -17,6 +17,7 @@ class RobotBase:
         return self._name
 
     def move(self, distance):
+        """Move the robot a specified distance."""
         self.distance = distance
 
         if not isinstance(distance, int):
@@ -30,17 +31,26 @@ class RobotBase:
         if distance > 0:
             self._motor.forward(distance)
             self._motor = Motor(1, True)
-        
 
     def scan_environment(self):
-        pass
+        """Return a simple summary of the current sensor readings."""
+        return {
+            "Sensor Type": self._sensor._sensor_type,
+            "Reading": self._sensor.get_reading(),
+            "Obstacle Detected": self._sensor.detect_obstacle()
+        }
 
     def get_battery_status(self):
-        pass
+        """Return the current battery state."""
+        return {
+            "Battery Level": self._battery.current_level,
+            "Battery Percentage": float(self._battery.get_percentage()),
+            "Battery Depleted": self._battery.is_depleted()
+        }
 
     def stop(self):
-        pass
-
+        """Stop the robot motor."""
+        return self._motor.stop()
 
     def report_status(self):
         """Report the current status of the robot.
@@ -50,7 +60,7 @@ class RobotBase:
         """
         return (f"Robot Name: {self._name!r}\n"
                 f"Battery Level: {self._battery.get_percentage()}\n"
-                f"Is Moving: {self._motor.is_running()}\n"
+                f"Is Moving: {self._motor.is_running}\n"
                 f"Sensor Readings: {self._sensor.get_reading()!r}")
 
 
@@ -91,5 +101,8 @@ robot.move(50)
 # Sensor
 # robot._sensor = Sensor("object")
 
-print(robot.report_status)
+print(robot.report_status())
+print(robot.get_battery_status())
+print(robot.scan_environment())
+print(robot.stop())
 
