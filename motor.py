@@ -20,8 +20,6 @@ class Motor():
 
     def forward(self, distance):
         if self._is_running == True:
-            if not isinstance(distance, int):
-                raise TypeError("Distance must be an integer")
             if distance > 0:
                 self._is_running = True
                 return (f"Moving Forward: {distance}")
@@ -36,8 +34,6 @@ class Motor():
 
     def backward(self, distance):
         if self._is_running == True:
-            if not isinstance(distance, int):
-                raise TypeError("Distance must be an integer")
             if distance > 0:
                 self._is_running = True
                 return (f"Moving Backwards: {distance}")
@@ -58,8 +54,6 @@ class Motor():
         return ("Robot Stopped")
 
     def set_speed(self, speed):
-        if not isinstance(speed, (int, float)):
-            raise TypeError("Speed must be a number")
         if speed < 0:
             raise ValueError("Speed cannot be negative")
         self._speed = speed

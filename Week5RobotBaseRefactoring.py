@@ -8,7 +8,7 @@ class RobotBase:
     def __init__(self, name):
         self._name = name
         self._battery = Battery(100, 50)
-        self._motor = Motor(0, False)
+        self._motor = Motor(1, True)
         self._sensor = Sensor("object")
 
     @property
@@ -16,41 +16,6 @@ class RobotBase:
         """Get robot name."""
         return self._name
 
-    def move(self, distance):
-        """Move the robot a specified distance."""
-        self.distance = distance
-
-        if not isinstance(distance, int):
-            raise TypeError("Distance must be an integer")
-
-        if distance < 0:
-            self._motor.backward(distance)
-            self._motor = Motor(1, True)
-        if distance == 0:
-            self._motor = Motor(0, False)
-        if distance > 0:
-            self._motor.forward(distance)
-            self._motor = Motor(1, True)
-
-    def scan_environment(self):
-        """Return a simple summary of the current sensor readings."""
-        return {
-            "Sensor Type": self._sensor._sensor_type,
-            "Reading": self._sensor.get_reading(),
-            "Obstacle Detected": self._sensor.detect_obstacle()
-        }
-
-    def get_battery_status(self):
-        """Return the current battery state."""
-        return {
-            "Battery Level": self._battery.current_level,
-            "Battery Percentage": float(self._battery.get_percentage()),
-            "Battery Depleted": self._battery.is_depleted()
-        }
-
-    def stop(self):
-        """Stop the robot motor."""
-        return self._motor.stop()
 
     def report_status(self):
         """Report the current status of the robot.
@@ -59,13 +24,13 @@ class RobotBase:
             A string containing robot name, battery level, moving status, and sensor readings.
         """
         return (f"Robot Name: {self._name!r}\n"
-                f"Battery Level: {self._battery.get_percentage()}\n"
-                f"Is Moving: {self._motor.is_running}\n"
-                f"Sensor Readings: {self._sensor.get_reading()!r}")
+                f"Battery Level: {Battery}\n"
+                f"Is Moving: {Motor!r}\n"
+                f"Sensor Readings: {Sensor!r}")
 
 
     def __str__(self):
-        return f"RobotBase('{self._name!r}', {self._battery.get_percentage()}, {self._battery.current_level()!r}, {self._motor.is_running()!r}, {self._sensor.get_reading()!r})"
+        return f"RobotBase('{self._name!r}', {self._battery.get_percentage()}, {self._battery.current_level()!r}, {self._motor.is_running!r}, {Sensor!r})"
 
     def __repr__(self):
         return (f"Robot Name: {self._name!r}\n"
@@ -88,8 +53,17 @@ print("Initial Robot Settings:")
 robot = RobotBase("Bob")
 
 # Battery
-# robot._battery = Battery(100, 80)
-# robot._battery.drain(50)
+robot._battery = Battery(100, 70)
+robot._battery.drain(20)
+
+# Motor
+robot._motor = Motor(5, True)
+# robot._motor.forward(20)
+# robot._motor.stop()
+robot._motor.set_speed(50)
+
+# Sensor
+robot._sensor = Sensor("object")
 
 # Motor
 robot.move(50)
@@ -98,11 +72,27 @@ robot.move(50)
 # # robot._motor.stop()
 # robot._motor.set_speed(50)
 
-# Sensor
-# robot._sensor = Sensor("object")
+# print("\nStart Robot:")
+# # Updating status for movement and battery level
+# robot.move_forward(6)  # Move forward at speed 5
+# robot.battery_level = 82  # Set battery level to 82%
 
-print(robot.report_status())
-print(robot.get_battery_status())
-print(robot.scan_environment())
-print(robot.stop())
+# # Getting and setting sensor readings
+# proximity = robot.get_sensor_reading("proximity")
+# temperature = robot.get_sensor_reading("temperature")
+# robot.set_sensor_reading("proximity", 0.5)  # Update proximity sensor reading
+# robot.set_sensor_reading("temperature", 23.0)  # Update temperature sensor reading
 
+# print(robot.report_status)
+
+# print("\nStop Robot:")
+# # Updating status for movement and battery level
+# robot.move_forward(0)  # Move forward at speed 0
+# robot.battery_level = 80  # Set battery level to 80%
+# robot.stop
+
+# # Getting and setting sensor readings
+# robot.set_sensor_reading("proximity", 0.4)  # Update proximity sensor reading
+# robot.set_sensor_reading("temperature", 22.0)  # Update temperature sensor reading
+
+# print(robot.report_status)

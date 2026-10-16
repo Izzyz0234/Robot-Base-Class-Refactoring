@@ -23,7 +23,7 @@ class Battery():
 
     def drain(self, amount):
         if self._current_level < amount:
-            raise ValueError("Battery drain level must be lower or equal to current level")
+            raise ValueError("Battery drain level must be higher or equal to current level")
         self.current_level = self.current_level - amount
 
     def charge(self):
