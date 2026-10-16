@@ -1,33 +1,19 @@
 class Sensor():
     def __init__(self, sensor_type):
         self._sensor_type = sensor_type
-
-    # @property
-    # def sensor_type(self):
-    #     """Get sensor readings."""
-    #     return self.sensor_type
-
-    # @sensor_type.setter
-    # def sensor_type(self, value):
-    #     """Set sensor readings.
-
-    #     Args:
-    #         value: New sensor readings (dict)
-    #     """
-    #     self._sensor_type = value
-
+        self._reading = "Clear"
 
     def read_data(self):
         """Read environmental data from sensors."""
-        pass
-    
+        return {"Type": self._sensor_type, "Reading": self._reading}
+
     def detect_obstacle(self):
         """Detect if obstacle is present."""
-        pass
-    
+        return self._reading == "Obstacle"
+
     def get_reading(self):
         """Get sensor reading value."""
-        pass
+        return self._reading
 
 
 #read_data()
