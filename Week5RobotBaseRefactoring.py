@@ -65,7 +65,12 @@ robot._motor.set_speed(50)
 # Sensor
 robot._sensor = Sensor("object")
 
-print(robot.report_status)
+# Motor
+robot.move(50)
+# robot._motor = Motor(5, True)
+# # robot._motor.forward(20)
+# # robot._motor.stop()
+# robot._motor.set_speed(50)
 
 # print("\nStart Robot:")
 # # Updating status for movement and battery level
